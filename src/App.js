@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import Gallery from './Gallery'
+import Controls from './Controls'
 
 export default function App() {
-  const [artID, setArtID] = useState(1236)
+  const [artID, setArtID] = useState(12700)
   const [data, setData] = useState({})
 
   useEffect(() => {
@@ -14,12 +15,8 @@ export default function App() {
       })
   }, [artID])
 
-  function handleArtIDChange(e) {
-    console.log(e)
-  }
-
   return <main>
     <Gallery data={data} />
-    <button num={1} onClick={handleArtIDChange}>PUSH ME</button>
+    <Controls setArtID={setArtID} />
   </main>
 }
