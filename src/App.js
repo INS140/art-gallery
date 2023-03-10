@@ -17,6 +17,6 @@ export default function App() {
 
   return <main>
     <Gallery data={data} />
-    <Controls setArtID={setArtID} />
+    <Controls artID={artID} setArtID={setArtID} />
   </main>
 }
