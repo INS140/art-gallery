@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import Gallery from './Gallery'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const [artID, setArtID] = useState(1236)
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${artID}`)
+      .then(res => res.json())
+      .then(resData => {
+        console.log(resData)
+        setData(resData)
+      })
+  }, [artID])
+
+  function handleArtIDChange(e) {
+    console.log(e)
+  }
+
+  return <main>
+    <Gallery data={data} />
+    <button num={1} onClick={handleArtIDChange}>PUSH ME</button>
+  </main>
 }
-
-export default App;
